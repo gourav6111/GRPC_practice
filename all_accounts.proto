@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package all_accounts;
+
+import "account_holder.proto";
+
+message all_accounts{
+    account_holder.AccountHolder AccountHolder = 1;
+    repeated account_holder.AccountHolder AccountHolders = 2; 
+}

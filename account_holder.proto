@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package account_holder;
+
+import "bank.proto";  // just import the file name
+
+message AccountHolder{
+    string name = 1;
+    bank.Bank bank = 2;     // package_name.message
+    int64 balance = 3;
+}
