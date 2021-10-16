@@ -1,0 +1,6 @@
+created client, server, protos dir
+
+npm init
+npm install -g grpc-tools 
+npm install google-protobuf
+npm install grpc
