@@ -1,0 +1,25 @@
+// if cd Desktop/GRPC_practice/node_grpc
+// protoc -I=. ./protos/calculator.proto --js_out=import_style=commonjs,binary:./server --grpc_out=./server --plugin=protoc-gen-grpc=./node_modules/.bin/grpc_tools_node_protoc_plugin
+
+
+syntax = "proto3";
+
+package calculator;
+
+service CalculatorService {
+
+    //unary API
+    rpc Calculator (CalculatorRequest) returns (CalculatorResponse) {};
+ 
+}
+
+message Numbers{
+    int32 first_number = 1;
+    int32 second_number = 2;
+}
+message CalculatorRequest{
+    Numbers numbers = 1;
+}
+message CalculatorResponse{
+    int32 sum = 1;
+}
