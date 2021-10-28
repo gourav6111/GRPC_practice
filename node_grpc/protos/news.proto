@@ -1,0 +1,30 @@
+// if cd Desktop/GRPC_practice/node_grpc
+// protoc -I=. ./protos/news.proto --js_out=import_style=commonjs,binary:./server --grpc_out=./server --plugin=protoc-gen-grpc=./node_modules/.bin/grpc_tools_node_protoc_plugin
+
+
+syntax = "proto3";
+
+package news;
+
+service NewsService {
+
+    //streaming API
+    rpc news (NewsRequest) returns (stream NewsResponse) {};
+ 
+}
+
+message NewsChannel{
+    string channel_name = 1;
+}
+
+message BreakingNews{
+    string headline = 1;
+}
+
+message NewsRequest{
+    NewsChannel newsChannel = 1;
+}
+
+message NewsResponse{
+    BreakingNews breakingNews = 1;
+}

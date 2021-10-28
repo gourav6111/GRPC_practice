@@ -4,3 +4,7 @@ npm init
 npm install -g grpc-tools 
 npm install google-protobuf
 npm install grpc
+
+sudo snap install protobuf           
+sudo apt  install protobuf-compiler  
+
