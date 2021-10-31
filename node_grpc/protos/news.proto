@@ -27,4 +27,5 @@ message NewsRequest{
 
 message NewsResponse{
     BreakingNews breakingNews = 1;
+    string advertisement = 2;
 }

@@ -543,7 +543,8 @@ proto.news.NewsResponse.prototype.toObject = function(opt_includeInstance) {
  */
 proto.news.NewsResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    breakingnews: (f = msg.getBreakingnews()) && proto.news.BreakingNews.toObject(includeInstance, f)
+    breakingnews: (f = msg.getBreakingnews()) && proto.news.BreakingNews.toObject(includeInstance, f),
+    advertisement: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -585,6 +586,10 @@ proto.news.NewsResponse.deserializeBinaryFromReader = function(msg, reader) {
       reader.readMessage(value,proto.news.BreakingNews.deserializeBinaryFromReader);
       msg.setBreakingnews(value);
       break;
+    case 2:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setAdvertisement(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -620,6 +625,13 @@ proto.news.NewsResponse.serializeBinaryToWriter = function(message, writer) {
       1,
       f,
       proto.news.BreakingNews.serializeBinaryToWriter
+    );
+  }
+  f = message.getAdvertisement();
+  if (f.length > 0) {
+    writer.writeString(
+      2,
+      f
     );
   }
 };
@@ -659,6 +671,24 @@ proto.news.NewsResponse.prototype.clearBreakingnews = function() {
  */
 proto.news.NewsResponse.prototype.hasBreakingnews = function() {
   return jspb.Message.getField(this, 1) != null;
+};
+
+
+/**
+ * optional string advertisement = 2;
+ * @return {string}
+ */
+proto.news.NewsResponse.prototype.getAdvertisement = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.news.NewsResponse} returns this
+ */
+proto.news.NewsResponse.prototype.setAdvertisement = function(value) {
+  return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 

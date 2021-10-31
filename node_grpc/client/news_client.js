@@ -3,8 +3,6 @@ var service = require("../server/protos/news_grpc_pb");
 
 var grpc = require("grpc");
 
-// let fs = require("fs");
-
 function callnews() {
     console.log("Hello From Client");
   
@@ -17,19 +15,29 @@ function callnews() {
     // created a protocol buffer greeting message
     var newsChannel = new news_proto.NewsChannel();
 
-    newsChannel.setChannelName("My channelllll");
+    newsChannel.setChannelName("Mmmmm Media House");
     
     // create our request
     var request = new news_proto.NewsRequest();
     request.setNewschannel(newsChannel);
   
-    client.news(request, (error, response) => {
-        console.log("calling")
-        if (!error) {
-          console.log("Response is -> ", response.getBreakingNews());
-        } else {
-          console.error(error);
-        }
+    var call = client.news(request, () => {});
+
+    call.on("data", response => {
+      console.log("Headline is -> ", response.getBreakingnews().getHeadline());
+      console.log("Advertisement is -> ", response.getAdvertisement());
+    });
+  
+    call.on("status", status => {
+      console.log(status.details);
+    });
+  
+    call.on("error", error => {
+      console.error(error.details);
+    });
+  
+    call.on("end", () => {
+      console.log("Streaming Ended!");
     });
   }
 
